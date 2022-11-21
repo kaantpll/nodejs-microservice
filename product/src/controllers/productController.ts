@@ -1,17 +1,23 @@
 import express , {Request,Response} from 'express'
-import amqp from 'amqplib'
+import amqp, { Channel,Connection, ConsumeMessage } from 'amqplib'
 import data from '../models/product'
 
 const productList = data;
 
-let channel : any;
+let channel: Channel, connection: Connection
 
 async function connect() {
-    const amqpServer = "amqp://localhost:5672";
-    const connection = await amqp.connect(amqpServer);
+    const amqpServer = "amqp://guest:guest@localhost:5672";
+    
+    connection = await amqp.connect(amqpServer);
     channel = await connection.createChannel();
-    await channel.assertQueue('PRODUCT');
+
+    await channel.assertQueue("order-service-queue");   
+    channel.consume('order-service-queue',message=>{
+        console.log(message?.content.toString())
+    })
   }
+connect();
 
 const getProductList = (req:Request,res: Response)=>{
     res.json({data:productList})
