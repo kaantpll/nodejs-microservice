@@ -5,6 +5,11 @@ I simulated order and stock tracking.
 - Nodejs
 - Typescript
 - RabbitMQ
+
+### Start Application
+```
+npm run dev
+```
   
 ### Dockerize your application
 ```
