@@ -17,5 +17,5 @@ $ docker build -t image_name .
 ```
 #### Run Docker compose 
 ```bash
-$ docker-compose up 
+$ docker compose up 
 ```
