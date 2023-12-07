@@ -38,9 +38,3 @@ const addNewProduct = async(req:Request, res:Response)=>{
 
 
 export {getProductList,addNewProduct,getProductWithById};
-
-/**
- * yeni product geldiğinde rabbit mq ile stock bilgisini güncelle
- * siparis verildiğinde product kontrol et varsa stock kontrol et hepsi varsa siparis oluştursun
- * 
- */
